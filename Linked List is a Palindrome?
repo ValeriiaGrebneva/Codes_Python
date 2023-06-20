@@ -1,0 +1,28 @@
+class Solution(object):
+    def isPalindrome(self, head):
+        def Nth_Node(head, N):
+            node_n = head
+            for n in range(N):
+                node_n = node_n.next
+            return node_n.val
+        cur = head
+        length = 0
+        while cur:
+            length += 1
+            cur = cur.next
+        for i in range (length // 2):
+            if Nth_Node(head, i) != Nth_Node(head, length - 1 - i):
+                return False
+        return True
+
+
+
+
+class Solution(object):
+def isPalindrome(self, head):
+		llist = list()
+cur = head
+while cur:
+			llist.append(cur.val)
+cur = cur.next
+return llist == llist[::-1]
