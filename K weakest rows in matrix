@@ -1,0 +1,26 @@
+class Solution(object):
+    def kWeakestRows(self, mat, k):
+        def add(lists, k, pair):
+            length = len(lists)
+            if length == 0:
+                lists.append(pair)
+                return lists
+            for elem in range (length - 1, -1, -1):
+                if pair[0] >= lists[elem][0]:
+                    lists.insert(elem+1,pair)
+                    if length + 1 > k:
+                        lists.pop()
+                    return lists
+            lists.insert(0,pair)
+            if length + 1 > k:
+                lists.pop()
+            return lists
+        lists = list()
+        for row in range(len(mat)):
+            sum = 0
+            for i in mat[row]:
+                sum += i
+            lists = add(lists, k, (sum,row))
+        for j in range(k):
+            lists[j] = lists[j][1]
+        return lists
