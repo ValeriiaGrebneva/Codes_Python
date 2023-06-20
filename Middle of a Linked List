@@ -1,0 +1,10 @@
+class Solution(object):
+    def middleNode(self, head):
+        cur1 = head
+        cur2 = head.next
+        while cur2 != None:
+            cur1 = cur1.next
+            cur2 = cur2.next
+            if cur2 != None:
+                cur2 = cur2.next
+        return cur1
