@@ -1,0 +1,35 @@
+class Solution(object):
+    def romanToInt(self, s):
+        arr = list()
+        for letter in s:
+            if letter == "M":
+                arr.append(1000)
+            if letter == "D":
+                arr.append(500)
+            if letter == "C":
+                arr.append(100)
+            if letter == "L":
+                arr.append(50)
+            if letter == "X":
+                arr.append(10)
+            if letter == "V":
+                arr.append(5)
+            if letter == "I":
+                arr.append(1)
+        integ = 0
+        length = len(arr)
+        for i in range(length - 1):
+            if arr[i] < arr[i+1]:
+                integ -= arr[i]
+            elif arr[i] == arr[i+1]:
+                if i + 2 == length:
+                    integ += arr[i]
+                else:
+                    if arr[i] >= arr[i+2]:
+                        integ += arr[i]
+                    else:
+                        integ -= arr[i]
+            else:
+                integ += arr[i]
+        integ += arr[length-1]
+        return integ
