@@ -1,0 +1,31 @@
+def searchMatrix(self, matrix, target):
+    """
+    :type matrix: List[List[int]]
+    :type target: int
+    :rtype: bool
+    """
+    m = len(matrix)
+    n = len(matrix[0])
+    low_m = 0
+    high_m = m - 1
+    while high_m - low_m > 1:
+        mid_m = (low_m + high_m) // 2
+        if matrix[mid_m][0] == target:
+            return True
+        elif matrix[mid_m][0] < target:
+            low_m = mid_m
+        else:
+            high_m = mid_m
+    if matrix[high_m][0] <= target:
+        low_m = high_m
+    low_n = 0
+    high_n = n - 1
+    while high_n >= low_n:
+        mid_n = (low_n + high_n) // 2
+        if matrix[low_m][mid_n] == target:
+            return True
+        elif matrix[low_m][mid_n] < target:
+            low_n = mid_n + 1
+        else:
+            high_n = mid_n - 1
+    return False
