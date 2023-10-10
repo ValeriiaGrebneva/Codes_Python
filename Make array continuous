@@ -1,0 +1,14 @@
+class Solution(object):
+    def minOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        nums_new = sorted(set(nums))
+        answer, j = n, 0
+        for i, v in enumerate(nums_new):
+            while j < len(nums_new) and nums_new[j] - v <= n - 1:
+                j += 1
+            answer = min(answer, n - (j - i))
+        return answer
