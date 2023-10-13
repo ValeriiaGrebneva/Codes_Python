@@ -1,0 +1,15 @@
+class Solution(object):
+    def fullBloomFlowers(self, flowers, people):
+        """
+        :type flowers: List[List[int]]
+        :type people: List[int]
+        :rtype: List[int]
+        """
+        ans = []
+        fl_bl = sorted(a for a,_ in flowers)
+        fl_n_bl = sorted(b for _,b in flowers)
+        for p in people:
+            qty_bl = bisect_right(fl_bl, p)
+            qty_n_bl = bisect_left(fl_n_bl, p)
+            ans.append(qty_bl - qty_n_bl)
+        return ans
